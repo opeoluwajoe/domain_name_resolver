@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class ResolverDto {
+public class DomainResolverDto {
     String domainName;
     List<String> ipAddresses;
 

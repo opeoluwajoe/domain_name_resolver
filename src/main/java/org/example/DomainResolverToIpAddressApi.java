@@ -1,6 +1,5 @@
-package org.example.api;
+package org.example;
 
-import org.example.ResolverDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,24 +17,24 @@ public class DomainResolverToIpAddressApi {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public ResponseEntity<?> resolveDomainToIpAddress() {
-        List<ResolverDto> ipAddressList = new ArrayList<ResolverDto>();
+        List<DomainResolverDto> ipAddressList = new ArrayList<DomainResolverDto>();
         String[] websites = {"www.google.com", "www.amazon.com", "www.facebook.com"};
 
         for (String website : websites) {
-            ResolverDto resolverDto = new ResolverDto();
-            resolverDto.setDomainName(website);
+            DomainResolverDto domainResolverDto = new DomainResolverDto();
+            domainResolverDto.setDomainName(website);
             try {
                 InetAddress[] addresses = InetAddress.getAllByName(website);
                 List<String> host = new ArrayList<String>();
                 for (InetAddress address : addresses) {
                     host.add(address.getHostAddress());
                 }
-                resolverDto.setIpAddresses(host);
+                domainResolverDto.setIpAddresses(host);
             } catch (UnknownHostException e) {
                 System.err.println("Unable to resolve IP address for " + website);
             }
 
-            ipAddressList.add(resolverDto);
+            ipAddressList.add(domainResolverDto);
         }
 
         Map response = new HashMap();

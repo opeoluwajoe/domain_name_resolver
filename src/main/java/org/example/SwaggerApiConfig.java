@@ -33,7 +33,7 @@ public class SwaggerApiConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.example.api"))
+                .apis(RequestHandlerSelectors.basePackage("org.example"))
                 .paths(PathSelectors.any())
                 .build();
     }
